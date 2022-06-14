@@ -1,6 +1,6 @@
 ## Olá! Eu sou o Gabriel Franzeri
 
-- 🌱 Estudando Python, automação de processos
+- 🌱 Estudando as principais tecnologias usadas na automação comercial
 - ⚡ Fun fact: Resolvo o cubo mágico 
 
  <div>
