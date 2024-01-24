@@ -3,11 +3,9 @@
 - 🌱 Estudando as principais tecnologias usadas na automação comercial
 - ⚡ Fun fact: Resolvo o cubo mágico 
 
-[![gabref 42 stats](https://badge.mediaplus.ma/binary/galves-f)](
-  <a href="https://github.com/gabref">) <!-- (https://github.com/oakoudad/badge42) -->
+[![gabref 42 stats](https://badge.mediaplus.ma/binary/galves-f)](https://github.com/gabref) <!-- (https://github.com/oakoudad/badge42) -->
 
-[![gabref's GitHub stats](https://github-readme-stats.vercel.app/api?username=gabref&show_icons=true&theme=radical)](
-  <a href="https://github.com/gabref">) <!-- (https://github.com/anuraghazra/github-readme-stats) -->
+[![gabref's GitHub stats](https://github-readme-stats.vercel.app/api?username=gabref&show_icons=true&theme=radical)](https://github.com/gabref) <!-- (https://github.com/anuraghazra/github-readme-stats) -->
 
 <!--
  <div>
