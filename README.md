@@ -46,7 +46,7 @@
 
 **🐱 My GitHub Data** 
 
-> 📦 ? Used in GitHub's Storage 
+> 📦 502.7 kB Used in GitHub's Storage 
  > 
 > 🏆 221 Contributions in the Year 2025
  > 
@@ -54,7 +54,7 @@
  > 
 > 📜 50 Public Repositories 
  > 
-> 🔑 0 Private Repositories 
+> 🔑 34 Private Repositories 
  > 
 **I'm an Early 🐤** 
 
@@ -112,5 +112,5 @@ Lua                      4 repos             █░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 19/05/2025 11:49:39 UTC
+ Last Updated on 19/05/2025 12:07:05 UTC
 <!--END_SECTION:waka-->
