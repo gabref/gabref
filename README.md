@@ -40,4 +40,77 @@
 </div>
 
 <!--START_SECTION:waka-->
+![Profile Views](http://img.shields.io/badge/Profile%20Views-0-blue)
+
+![Lines of code](https://img.shields.io/badge/From%20Hello%20World%20I%27ve%20Written-2.7%20million%20lines%20of%20code-blue)
+
+**🐱 My GitHub Data** 
+
+> 📦 ? Used in GitHub's Storage 
+ > 
+> 🏆 221 Contributions in the Year 2025
+ > 
+> 🚫 Not Opted to Hire
+ > 
+> 📜 50 Public Repositories 
+ > 
+> 🔑 0 Private Repositories 
+ > 
+**I'm an Early 🐤** 
+
+```text
+🌞 Morning                578 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.56 % 
+🌆 Daytime                1676 commits        ██████████░░░░░░░░░░░░░░░   39.32 % 
+🌃 Evening                1449 commits        ████████░░░░░░░░░░░░░░░░░   33.99 % 
+🌙 Night                  560 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.14 % 
+```
+📅 **I'm Most Productive on Wednesday** 
+
+```text
+Monday                   697 commits         ████░░░░░░░░░░░░░░░░░░░░░   16.35 % 
+Tuesday                  527 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.36 % 
+Wednesday                1047 commits        ██████░░░░░░░░░░░░░░░░░░░   24.56 % 
+Thursday                 584 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.70 % 
+Friday                   761 commits         ████░░░░░░░░░░░░░░░░░░░░░   17.85 % 
+Saturday                 406 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.52 % 
+Sunday                   241 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   05.65 % 
+```
+
+
+📊 **This Week I Spent My Time On** 
+
+```text
+🕑︎ Time Zone: Europe/Berlin
+
+💬 Programming Languages: 
+No Activity Tracked This Week
+
+🔥 Editors: 
+No Activity Tracked This Week
+
+🐱‍💻 Projects: 
+No Activity Tracked This Week
+
+💻 Operating System: 
+No Activity Tracked This Week
+```
+
+**I Mostly Code in C** 
+
+```text
+C                        20 repos            ██████░░░░░░░░░░░░░░░░░░░   22.99 % 
+TypeScript               14 repos            ████░░░░░░░░░░░░░░░░░░░░░   16.09 % 
+HTML                     6 repos             ██░░░░░░░░░░░░░░░░░░░░░░░   06.90 % 
+Astro                    5 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   05.75 % 
+Lua                      4 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   04.60 % 
+```
+
+
+
+**Timeline**
+
+![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
+
+
+ Last Updated on 19/05/2025 11:49:39 UTC
 <!--END_SECTION:waka-->
