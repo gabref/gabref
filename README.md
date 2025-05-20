@@ -48,12 +48,53 @@
 
 > 📦 502.8 kB Used in GitHub's Storage 
  > 
+> 🏆 222 Contributions in the Year 2025
+ > 
 > 🚫 Not Opted to Hire
  > 
 > 📜 50 Public Repositories 
  > 
 > 🔑 34 Private Repositories 
  > 
+**I'm an Early 🐤** 
+
+```text
+🌞 Morning                579 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.58 % 
+🌆 Daytime                1676 commits        ██████████░░░░░░░░░░░░░░░   39.31 % 
+🌃 Evening                1449 commits        ████████░░░░░░░░░░░░░░░░░   33.98 % 
+🌙 Night                  560 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.13 % 
+```
+📅 **I'm Most Productive on Wednesday** 
+
+```text
+Monday                   697 commits         ████░░░░░░░░░░░░░░░░░░░░░   16.35 % 
+Tuesday                  528 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.38 % 
+Wednesday                1047 commits        ██████░░░░░░░░░░░░░░░░░░░   24.55 % 
+Thursday                 584 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.70 % 
+Friday                   761 commits         ████░░░░░░░░░░░░░░░░░░░░░   17.85 % 
+Saturday                 406 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.52 % 
+Sunday                   241 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   05.65 % 
+```
+
+
+📊 **This Week I Spent My Time On** 
+
+```text
+🕑︎ Time Zone: Europe/Berlin
+
+💬 Programming Languages: 
+No Activity Tracked This Week
+
+🔥 Editors: 
+No Activity Tracked This Week
+
+🐱‍💻 Projects: 
+No Activity Tracked This Week
+
+💻 Operating System: 
+No Activity Tracked This Week
+```
+
 **I Mostly Code in C** 
 
 ```text
@@ -71,5 +112,5 @@ Lua                      4 repos             █░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 20/05/2025 00:53:25 UTC
+ Last Updated on 20/05/2025 12:22:15 UTC
 <!--END_SECTION:waka-->
