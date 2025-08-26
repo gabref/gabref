@@ -112,5 +112,5 @@ Lua                      4 repos             █░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 25/08/2025 12:22:36 UTC
+ Last Updated on 26/08/2025 00:50:43 UTC
 <!--END_SECTION:waka-->
