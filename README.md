@@ -48,8 +48,6 @@
 
 > 📦 ? Used in GitHub's Storage 
  > 
-> 🏆 663 Contributions in the Year 2025
- > 
 > 🚫 Not Opted to Hire
  > 
 > 📜 51 Public Repositories 
@@ -112,5 +110,5 @@ Lua                      4 repos             █░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 14/09/2025 12:18:48 UTC
+ Last Updated on 15/09/2025 00:53:02 UTC
 <!--END_SECTION:waka-->
