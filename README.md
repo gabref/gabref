@@ -56,6 +56,45 @@
  > 
 > 🔑 0 Private Repositories 
  > 
+**I'm an Early 🐤** 
+
+```text
+🌞 Morning                689 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.44 % 
+🌆 Daytime                1910 commits        ██████████░░░░░░░░░░░░░░░   40.03 % 
+🌃 Evening                1508 commits        ████████░░░░░░░░░░░░░░░░░   31.60 % 
+🌙 Night                  665 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.94 % 
+```
+📅 **I'm Most Productive on Wednesday** 
+
+```text
+Monday                   804 commits         ████░░░░░░░░░░░░░░░░░░░░░   16.85 % 
+Tuesday                  576 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.07 % 
+Wednesday                1168 commits        ██████░░░░░░░░░░░░░░░░░░░   24.48 % 
+Thursday                 679 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.23 % 
+Friday                   841 commits         ████░░░░░░░░░░░░░░░░░░░░░   17.62 % 
+Saturday                 463 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.70 % 
+Sunday                   241 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   05.05 % 
+```
+
+
+📊 **This Week I Spent My Time On** 
+
+```text
+🕑︎ Time Zone: Europe/Berlin
+
+💬 Programming Languages: 
+No Activity Tracked This Week
+
+🔥 Editors: 
+No Activity Tracked This Week
+
+🐱‍💻 Projects: 
+No Activity Tracked This Week
+
+💻 Operating System: 
+No Activity Tracked This Week
+```
+
 **I Mostly Code in C** 
 
 ```text
@@ -73,5 +112,5 @@ Lua                      4 repos             █░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 20/09/2025 00:45:59 UTC
+ Last Updated on 20/09/2025 12:19:47 UTC
 <!--END_SECTION:waka-->
