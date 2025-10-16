@@ -1,7 +1,8 @@
 ## Olá! Eu sou o Gabriel Franzeri
 
 - 🌱 Estudando as principais tecnologias usadas na automação comercial
-- ⚡ Fun fact: Resolvo o cubo mágico 
+- ⚡ Fun fact: Resolvo o cubo mágico
+- Website: [gabudev.cloud](https://gabudev.cloud)
 
 [![gabref 42 stats](https://badge.mediaplus.ma/binary/galves-f)](https://github.com/gabref) <!-- (https://github.com/oakoudad/badge42) -->
 
