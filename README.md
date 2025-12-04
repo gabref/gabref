@@ -96,5 +96,5 @@ Shell                    2 repos             █░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 03/12/2025 12:25:34 UTC
+ Last Updated on 04/12/2025 12:26:17 UTC
 <!--END_SECTION:waka-->
