@@ -96,5 +96,5 @@ PHP                      1 repo              ░░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 27/03/2026 12:40:37 UTC
+ Last Updated on 28/03/2026 01:11:14 UTC
 <!--END_SECTION:waka-->
