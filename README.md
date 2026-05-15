@@ -41,7 +41,43 @@
 </div>
 
 <!--START_SECTION:waka-->
-![Lines of code](https://img.shields.io/badge/From%20Hello%20World%20I%27ve%20Written-2.12%20million%20lines%20of%20code-blue?style=flat)
+![Lines of code](https://img.shields.io/badge/From%20Hello%20World%20I%27ve%20Written-2.60%20million%20lines%20of%20code-blue?style=flat)
+
+**I'm an Early 🐤** 
+
+```text
+🌞 Morning                693 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.91 % 
+🌆 Daytime                1725 commits        ██████████░░░░░░░░░░░░░░░   39.60 % 
+🌃 Evening                1343 commits        ████████░░░░░░░░░░░░░░░░░   30.83 % 
+🌙 Night                  595 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.66 % 
+```
+📅 **I'm Most Productive on Wednesday** 
+
+```text
+Monday                   744 commits         ████░░░░░░░░░░░░░░░░░░░░░   17.08 % 
+Tuesday                  611 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.03 % 
+Wednesday                935 commits         █████░░░░░░░░░░░░░░░░░░░░   21.46 % 
+Thursday                 590 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.54 % 
+Friday                   730 commits         ████░░░░░░░░░░░░░░░░░░░░░   16.76 % 
+Saturday                 457 commits         ███░░░░░░░░░░░░░░░░░░░░░░   10.49 % 
+Sunday                   289 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   06.63 % 
+```
+
+
+📊 **This Week I Spent My Time On** 
+
+```text
+🕑︎ Time Zone: Europe/Berlin
+
+💬 Programming Languages: 
+No Activity Tracked This Week
+
+🔥 Editors: 
+No Activity Tracked This Week
+
+💻 Operating System: 
+No Activity Tracked This Week
+```
 
 **I Mostly Code in C** 
 
@@ -60,5 +96,5 @@ PHP                      1 repo              ░░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 15/05/2026 02:02:16 UTC
+ Last Updated on 15/05/2026 13:28:27 UTC
 <!--END_SECTION:waka-->
