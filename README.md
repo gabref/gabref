@@ -41,26 +41,26 @@
 </div>
 
 <!--START_SECTION:waka-->
-![Lines of code](https://img.shields.io/badge/From%20Hello%20World%20I%27ve%20Written-5.23%20million%20lines%20of%20code-blue?style=flat)
+![Lines of code](https://img.shields.io/badge/From%20Hello%20World%20I%27ve%20Written-4.75%20million%20lines%20of%20code-blue?style=flat)
 
 **I'm an Early 🐤** 
 
 ```text
-🌞 Morning                1538 commits        █████░░░░░░░░░░░░░░░░░░░░   19.82 % 
-🌆 Daytime                3334 commits        ███████████░░░░░░░░░░░░░░   42.97 % 
-🌃 Evening                1681 commits        █████░░░░░░░░░░░░░░░░░░░░   21.67 % 
-🌙 Night                  1206 commits        ████░░░░░░░░░░░░░░░░░░░░░   15.54 % 
+🌞 Morning                1538 commits        █████░░░░░░░░░░░░░░░░░░░░   19.88 % 
+🌆 Daytime                3320 commits        ███████████░░░░░░░░░░░░░░   42.92 % 
+🌃 Evening                1671 commits        █████░░░░░░░░░░░░░░░░░░░░   21.60 % 
+🌙 Night                  1206 commits        ████░░░░░░░░░░░░░░░░░░░░░   15.59 % 
 ```
 📅 **I'm Most Productive on Monday** 
 
 ```text
-Monday                   1598 commits        █████░░░░░░░░░░░░░░░░░░░░   20.60 % 
-Tuesday                  929 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.97 % 
-Wednesday                1256 commits        ████░░░░░░░░░░░░░░░░░░░░░   16.19 % 
-Thursday                 1071 commits        ███░░░░░░░░░░░░░░░░░░░░░░   13.80 % 
-Friday                   1434 commits        █████░░░░░░░░░░░░░░░░░░░░   18.48 % 
-Saturday                 899 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.59 % 
-Sunday                   572 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   07.37 % 
+Monday                   1594 commits        █████░░░░░░░░░░░░░░░░░░░░   20.61 % 
+Tuesday                  922 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.92 % 
+Wednesday                1248 commits        ████░░░░░░░░░░░░░░░░░░░░░   16.13 % 
+Thursday                 1066 commits        ███░░░░░░░░░░░░░░░░░░░░░░   13.78 % 
+Friday                   1434 commits        █████░░░░░░░░░░░░░░░░░░░░   18.54 % 
+Saturday                 899 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.62 % 
+Sunday                   572 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   07.39 % 
 ```
 
 
@@ -102,5 +102,5 @@ Dockerfile               1 repo              ░░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 17/08/2026 12:23:25 UTC
+ Last Updated on 18/08/2026 00:37:53 UTC
 <!--END_SECTION:waka-->
