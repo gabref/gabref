@@ -102,5 +102,5 @@ Dockerfile               1 repo              ░░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 11/09/2026 15:29:56 UTC
+ Last Updated on 12/09/2026 02:00:37 UTC
 <!--END_SECTION:waka-->
