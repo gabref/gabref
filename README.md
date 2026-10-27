@@ -85,14 +85,14 @@ No Activity Tracked This Week
 No AI Coding Activity Tracked This Week
 ```
 
-**I Mostly Code in TypeScript** 
+**I Mostly Code in Rust** 
 
 ```text
-TypeScript               22 repos            █████░░░░░░░░░░░░░░░░░░░░   18.97 % 
-Rust                     18 repos            ████░░░░░░░░░░░░░░░░░░░░░   15.52 % 
-JavaScript               11 repos            ██░░░░░░░░░░░░░░░░░░░░░░░   09.48 % 
-Go                       3 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   02.59 % 
-Dockerfile               1 repo              ░░░░░░░░░░░░░░░░░░░░░░░░░   00.86 % 
+Rust                     22 repos            █████░░░░░░░░░░░░░░░░░░░░   18.33 % 
+TypeScript               22 repos            █████░░░░░░░░░░░░░░░░░░░░   18.33 % 
+JavaScript               11 repos            ██░░░░░░░░░░░░░░░░░░░░░░░   09.17 % 
+Go                       3 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   02.50 % 
+Dockerfile               1 repo              ░░░░░░░░░░░░░░░░░░░░░░░░░   00.83 % 
 ```
 
 
@@ -102,5 +102,5 @@ Dockerfile               1 repo              ░░░░░░░░░░░�
 ![Lines of Code chart](https://raw.githubusercontent.com/gabref/gabref/main/assets/bar_graph.png)
 
 
- Last Updated on 27/10/2026 02:49:05 UTC
+ Last Updated on 27/10/2026 17:05:55 UTC
 <!--END_SECTION:waka-->
