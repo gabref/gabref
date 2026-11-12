@@ -15,8 +15,8 @@
 <circle cx="29" cy="228" r="4" fill="#F2D96B"/><text x="42" y="233" font-size="16">JavaScript</text>
 <text x="376" y="233" text-anchor="end" class="muted" font-size="15">12.3%</text><rect x="266.62" y="115" width="26.81" height="12" fill="#A3A6D3" clip-path="url(#bar)"/>
 <circle cx="29" cy="260" r="4" fill="#A3A6D3"/><text x="42" y="265" font-size="16">C</text>
-<text x="376" y="265" text-anchor="end" class="muted" font-size="15">7.6%</text><rect x="293.44" y="115" width="24.77" height="12" fill="#8496B4" clip-path="url(#bar)"/>
-<circle cx="29" cy="292" r="4" fill="#8496B4"/><text x="42" y="297" font-size="16">Astro</text>
+<text x="376" y="265" text-anchor="end" class="muted" font-size="15">7.6%</text><rect x="293.44" y="115" width="24.77" height="12" fill="#FF826B" clip-path="url(#bar)"/>
+<circle cx="29" cy="292" r="4" fill="#FF826B"/><text x="42" y="297" font-size="16">Astro</text>
 <text x="376" y="297" text-anchor="end" class="muted" font-size="15">7.0%</text><rect x="318.21" y="115" width="11.71" height="12" fill="#F08267" clip-path="url(#bar)"/>
 <circle cx="29" cy="324" r="4" fill="#F08267"/><text x="42" y="329" font-size="16">HTML</text>
 <text x="376" y="329" text-anchor="end" class="muted" font-size="15">3.3%</text><rect x="329.91" y="115" width="46.09" height="12" fill="#8496B4" clip-path="url(#bar)"/>

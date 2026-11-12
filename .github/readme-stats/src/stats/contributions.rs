@@ -78,8 +78,17 @@ struct PullRequest {
     id: String,
     created_at: DateTime<Utc>,
     updated_at: DateTime<Utc>,
+    state: PullRequestState,
     repository: Repo,
     head_repository: Option<Repo>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+enum PullRequestState {
+    Open,
+    Merged,
+    Closed,
 }
 
 /// Fetch only identifiers, commit metadata and file types; never publish names.
@@ -223,6 +232,12 @@ pub(super) fn collect(
             pr.repository.is_fork || pr.head_repository.as_ref().is_some_and(|repo| repo.is_fork);
         if pr.created_at >= since && pr.created_at <= now {
             opened += 1;
+            let state = match pr.state {
+                PullRequestState::Open => 0,
+                PullRequestState::Merged => 1,
+                PullRequestState::Closed => 2,
+            };
+            collector.stats.pr_states[state] += 1;
             if fork {
                 collector.stats.fork_prs += 1;
             }
@@ -372,7 +387,7 @@ mod tests {
                         None
                     };
                     return Ok(json!({"user":{"pullRequests":connection(vec![json!({
-                            "id":if variables["cursor"].is_null() {"pr-1"} else {"pr-2"},"createdAt":self.now,"updatedAt":self.now,"state":"OPEN",
+                            "id":if variables["cursor"].is_null() {"pr-1"} else {"pr-2"},"createdAt":self.now,"updatedAt":self.now,"state":if variables["cursor"].is_null() {"OPEN"} else {"MERGED"},
                         "repository":base,"headRepository":repo
                     })],next)}}));
                 }
@@ -405,6 +420,7 @@ mod tests {
         assert!(stats.commits.iter().all(|c| c.from_fork && c.from_pr));
         assert_eq!(stats.fork_prs, 2);
         assert_eq!(stats.contributions.total_pull_request_contributions, 2);
+        assert_eq!(stats.pr_states, [1, 1, 0]);
         assert_eq!(stats.fork_languages["Rust"], 200);
         assert_eq!(stats.fork_languages["TypeScript"], 4);
         assert_eq!(api.rest_calls, 4);

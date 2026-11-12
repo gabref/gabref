@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/profile-header.svg" width="840" alt="Gabriel Franzeri — Software, sistemas e automação">
+  <img src="assets/profile-header.svg" width="100%" alt="Gabriel Franzeri — Software, systems and automation">
 </p>
 
 <p align="center">
@@ -11,11 +11,17 @@
 </p>
 
 <p align="center">
-  Estudando as tecnologias por trás da automação comercial.<br>
-  Fora do código, resolvo o cubo mágico.
+  Building tools with Rust, Tauri, and TypeScript.<br>
+  At home with Linux, Neovim, and the terminal.<br>
+  Exploring commercial automation. Solving Rubik's cubes away from the keyboard.
 </p>
 
 <p align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tauri/tauri-original.svg" width="36" height="36" alt="Tauri"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original.svg" width="36" height="36" alt="Android"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" width="36" height="36" alt="Linux"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/neovim/neovim-original.svg" width="36" height="36" alt="Neovim"> &nbsp;
+  <img src="assets/terminal.svg" width="36" height="36" alt="Terminal"> &nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-original.svg" width="36" height="36" alt="Rust"> &nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" width="36" height="36" alt="TypeScript"> &nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" width="36" height="36" alt="C"> &nbsp;
@@ -31,15 +37,31 @@
 ## 📊 GitHub activity
 
 <p align="center">
-  <img src="assets/stats/activity.svg" width="820" alt="GitHub activity overview for the past 30 days">
-</p>
-<p align="center">
-  <img src="assets/stats/languages.svg" width="400" alt="Languages across public and private repositories">
-  <img src="assets/stats/rhythm.svg" width="400" alt="Commit activity by weekday and time of day">
+  <picture>
+    <source media="(max-width: 1199px)" srcset="assets/stats/activity-compact.svg">
+    <img src="assets/stats/activity.svg" width="100%" alt="GitHub activity overview for the past 30 days">
+  </picture>
 </p>
 
 <p align="center">
-  <img src="assets/stats/forks.svg" width="820" alt="My authored commits, changed lines and pull requests involving forks">
+  <picture>
+    <source media="(max-width: 1199px)" srcset="assets/stats/languages-rhythm-stacked.svg">
+    <img src="assets/stats/languages-rhythm.svg" width="100%" alt="Languages across public and private repositories, and commit activity by weekday and time of day">
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(max-width: 1199px)" srcset="assets/stats/forks-compact.svg">
+    <img src="assets/stats/forks.svg" width="100%" alt="My authored commits, changed lines and pull requests involving forks">
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(max-width: 1199px)" srcset="assets/stats/stack-shipping-stacked.svg">
+    <img src="assets/stats/stack-shipping.svg" width="100%" alt="Framework and tooling repository counts, pull request outcomes, and commit streaks">
+  </picture>
 </p>
 
 <details>
@@ -93,6 +115,27 @@ Other                  1,905,953  ██░░░░░░░░░░░░░�
 **Repository coverage:** 51 public + 57 private owned, non-fork repositories.
 
 **Private contributions reported by GitHub:** 97 (includes contribution types beyond commits; not added to the commit total).
+
+**PR outcomes** · for PRs opened in the past 30 days
+
+| Open | Merged | Closed without merge |
+| ---: | ---: | ---: |
+| 3 | 12 | 0 |
+
+**Commit streaks within the last 30 local dates:** current 4 days · longest 5 days.
+
+**Framework & tooling signals** · owned non-fork repositories; a repository can match multiple tools
+
+| Tool | Matched repositories |
+| :--- | ---: |
+| Tauri | 6 |
+| Android | 2 |
+| Linux | 0 |
+| Neovim | 1 |
+| React | 14 |
+| Vue | 2 |
+| Astro | 12 |
+| Terminal | 3 |
 
 **Forks & pull requests · past 30 days**
 

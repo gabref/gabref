@@ -1,4 +1,4 @@
-use super::{Stats, activity, number};
+use super::{Stats, activity, number, pulse};
 use chrono::{DateTime, Datelike, Duration, Timelike, Utc};
 use chrono_tz::Tz;
 
@@ -42,6 +42,13 @@ fn color(name: &str) -> &'static str {
         "Java" => "#ECAF79",
         "Lua" => "#939CF1",
         "C#" => "#9BD473",
+        "Tauri" => "#FFC131",
+        "Android" => "#A4C639",
+        "Linux" => "#F5CE75",
+        "Neovim" => "#73C99B",
+        "React" => "#61DAFB",
+        "Astro" => "#FF826B",
+        "Terminal" => "#53E1C1",
         "JSON" | "TOML" | "YAML" => "#C998DE",
         _ => "#8496B4",
     }
@@ -237,12 +244,206 @@ fn forks(stats: &Stats) -> String {
     )
 }
 
+fn frameworks(stats: &Stats) -> String {
+    let mut body = r##"<text x="24" y="33" class="accent eyebrow">STACK / REPOSITORY SIGNALS</text><text x="24" y="69" class="heading">Frameworks &amp; tooling</text><text x="24" y="93" class="muted" font-size="13">Matched repos · public + private</text>"##.to_owned();
+    for (index, name) in super::frameworks::TOOLS.into_iter().enumerate() {
+        let x = 24 + (index % 2) * 190;
+        let y = 143 + (index / 2) * 62;
+        let value = number(*stats.frameworks.get(name).unwrap_or(&0));
+        body.push_str(&format!(r##"<text x="{x}" y="{y}" font-size="30" font-weight="700" style="fill:{}">{value}</text><text x="{x}" y="{}" class="muted" font-size="14">{name}</text>"##, color(name), y + 22));
+    }
+    body.push_str(r##"<path d="M24 382H376" stroke="#29364C"/><text x="24" y="405" class="muted" font-size="11">Detected from manifests, config paths &amp; topics</text>"##);
+    frame(
+        400,
+        424,
+        "Framework and tooling signals in owned repositories",
+        &body,
+    )
+}
+
+fn shipping(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
+    let (days, current, longest) = pulse(stats, now, zone);
+    let mut body = r##"<text x="24" y="33" class="accent eyebrow">MOMENTUM / LAST 30 DAYS</text><text x="24" y="69" class="heading">Shipping &amp; consistency</text><text x="24" y="93" class="muted" font-size="13">Outcomes of PRs opened in this period</text>"##.to_owned();
+    let mut x = 24.0;
+    let total: u64 = stats.pr_states.iter().sum();
+    for (index, (name, fill)) in [
+        ("Open", "#8B9CFF"),
+        ("Merged", "#53E1C1"),
+        ("Closed", "#FDA4AF"),
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let width = if total > 0 {
+            stats.pr_states[index] as f64 / total as f64 * 352.0
+        } else {
+            0.0
+        };
+        let y = 151 + index * 30;
+        body.push_str(&format!(r##"<rect x="{x:.2}" y="112" width="{width:.2}" height="10" fill="{fill}"/><circle cx="28" cy="{}" r="4" fill="{fill}"/><text x="42" y="{y}" font-size="15">{name}</text><text x="376" y="{y}" text-anchor="end" class="muted" font-size="16">{}</text>"##, y - 5, number(stats.pr_states[index])));
+        x += width;
+    }
+    body.push_str(&format!(r##"<path d="M24 236H376" stroke="#29364C"/><text x="24" y="260" class="accent eyebrow">COMMIT CONSISTENCY</text><text x="24" y="301" font-size="30" font-weight="700">{current} days</text><text x="214" y="301" font-size="30" font-weight="700">{longest} days</text><text x="24" y="324" class="muted" font-size="12">Current streak</text><text x="214" y="324" class="muted" font-size="12">Longest in window</text>"##));
+    let maximum = days.iter().copied().max().unwrap_or(0).max(1);
+    for (index, count) in days.into_iter().enumerate() {
+        let x = 24 + (index % 15) * 24;
+        let y = 343 + (index / 15) * 20;
+        let opacity = if count > 0 {
+            0.3 + count as f64 / maximum as f64 * 0.7
+        } else {
+            0.08
+        };
+        body.push_str(&format!(r##"<rect x="{x}" y="{y}" width="18" height="15" rx="3" fill="#53E1C1" opacity="{opacity:.2}"><title>{count} commits</title></rect>"##));
+    }
+    body.push_str(r##"<text x="24" y="405" class="muted" font-size="11">Streaks and pulse cover the last 30 local dates</text>"##);
+    frame(
+        400,
+        424,
+        "Pull request outcomes and commit consistency over 30 days",
+        &body,
+    )
+}
+
+fn pair(left: &str, right: &str, stacked: bool, title: &str) -> String {
+    let namespace = |svg: &str, prefix: &str| {
+        svg.replace("id=\"", &format!("id=\"{prefix}-"))
+            .replace("url(#", &format!("url(#{prefix}-"))
+            .replace(
+                "aria-labelledby=\"",
+                &format!("aria-labelledby=\"{prefix}-"),
+            )
+    };
+    let (width, height, right_x, right_y, scale) = if stacked {
+        (400, 868, 0, 444, 1.0)
+    } else {
+        (840, 434, 432, 0, 1.02)
+    };
+    format!(
+        r##"<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{}"><g transform="scale({scale})">{}</g><g transform="translate({right_x} {right_y}) scale({scale})">{}</g></svg>"##,
+        xml(title),
+        namespace(left, "left"),
+        namespace(right, "right")
+    )
+}
+
+fn overview_compact(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
+    let month = activity(&stats.commits.iter().collect::<Vec<_>>(), zone);
+    let week = stats
+        .commits
+        .iter()
+        .filter(|c| c.date >= now - Duration::days(7))
+        .count() as u64;
+    let mut body = r##"<text x="24" y="33" class="accent eyebrow">GITHUB / ACTIVITY</text><text x="24" y="65" class="muted" font-size="13">Public + private · past 30 days</text>"##.to_owned();
+    for (index, (value, label)) in [
+        (month[0], "Authored commits"),
+        (month[1], "Active days"),
+        (
+            stats.contributions.total_pull_request_contributions,
+            "PRs opened",
+        ),
+        (week, "Commits / last 7 days"),
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let x = 24 + (index % 2) * 190;
+        let y = 121 + (index / 2) * 84;
+        body.push_str(&format!(r##"<text x="{x}" y="{y}" font-size="36" font-weight="700">{}</text><text x="{x}" y="{}" class="muted" font-size="13">{label}</text>"##,number(value),y+24));
+    }
+    body.push_str(&format!(r##"<path d="M24 255H376" stroke="#29364C"/><text x="24" y="281" class="muted" font-size="12">{} public + {} private owned repos</text><text x="24" y="309" class="muted" font-size="11">Updated {}</text>"##,number(stats.repo_count-stats.private_repo_count),number(stats.private_repo_count),now.format("%d %b %Y")));
+    frame(400, 332, "GitHub activity overview, compact layout", &body)
+}
+
+fn forks_compact(stats: &Stats) -> String {
+    let commits = stats
+        .commits
+        .iter()
+        .filter(|c| c.from_fork)
+        .collect::<Vec<_>>();
+    let mut body = r##"<text x="24" y="33" class="accent eyebrow">CONTRIBUTIONS / LAST 30 DAYS</text><text x="24" y="69" class="heading">Forks &amp; pull requests</text>"##.to_owned();
+    for (index, (value, label, fill)) in [
+        (commits.len() as u64, "Authored fork commits", "#EDF3FF"),
+        (stats.fork_prs, "Fork PRs opened", "#EDF3FF"),
+        (
+            commits.iter().map(|c| c.additions).sum(),
+            "Lines added",
+            "#53E1C1",
+        ),
+        (
+            commits.iter().map(|c| c.deletions).sum(),
+            "Lines removed",
+            "#FDA4AF",
+        ),
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let x = 24 + (index % 2) * 190;
+        let y = 125 + (index / 2) * 84;
+        body.push_str(&format!(r##"<text x="{x}" y="{y}" font-size="34" font-weight="700" style="fill:{fill}">{}</text><text x="{x}" y="{}" class="muted" font-size="12">{label}</text>"##,number(value),y+24));
+    }
+    body.push_str(r##"<path d="M24 256H376" stroke="#29364C"/>"##);
+    let values = ranked(&stats.fork_languages, 4);
+    let total: u64 = values.iter().map(|(_, n)| n).sum();
+    for (index, (name, count)) in values.iter().take(4).enumerate() {
+        let x = 24 + (index % 2) * 190;
+        let y = 286 + (index / 2) * 28;
+        let percent = if total > 0 {
+            *count as f64 / total as f64 * 100.0
+        } else {
+            0.0
+        };
+        body.push_str(&format!(r##"<circle cx="{x}" cy="{}" r="4" fill="{}"/><text x="{}" y="{y}" font-size="13">{} <tspan class="muted">{percent:.0}%</tspan></text>"##,y-5,color(name),x+12,xml(name)));
+    }
+    body.push_str(r##"<text x="24" y="353" class="muted" font-size="11">Changed lines by file type · unique commit hashes</text>"##);
+    frame(
+        400,
+        376,
+        "Fork contributions and changed lines, compact layout",
+        &body,
+    )
+}
+
 pub(super) fn render(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> Vec<(&'static str, String)> {
+    let languages = languages(stats);
+    let rhythm = rhythm(stats, zone);
+    let frameworks = frameworks(stats);
+    let shipping = shipping(stats, now, zone);
     vec![
         ("activity.svg", overview(stats, now, zone)),
-        ("languages.svg", languages(stats)),
-        ("rhythm.svg", rhythm(stats, zone)),
+        ("languages.svg", languages.clone()),
+        ("rhythm.svg", rhythm.clone()),
         ("forks.svg", forks(stats)),
+        ("activity-compact.svg", overview_compact(stats, now, zone)),
+        ("forks-compact.svg", forks_compact(stats)),
+        ("frameworks.svg", frameworks.clone()),
+        ("shipping.svg", shipping.clone()),
+        (
+            "languages-rhythm.svg",
+            pair(&languages, &rhythm, false, "Languages and commit rhythm"),
+        ),
+        (
+            "languages-rhythm-stacked.svg",
+            pair(&languages, &rhythm, true, "Languages and commit rhythm"),
+        ),
+        (
+            "stack-shipping.svg",
+            pair(
+                &frameworks,
+                &shipping,
+                false,
+                "Frameworks and shipping consistency",
+            ),
+        ),
+        (
+            "stack-shipping-stacked.svg",
+            pair(
+                &frameworks,
+                &shipping,
+                true,
+                "Frameworks and shipping consistency",
+            ),
+        ),
     ]
 }
 
@@ -255,7 +456,7 @@ mod tests {
         let mut stats = Stats::default();
         stats.languages.insert("<script>&\"'".into(), 10);
         let cards = render(&stats, Utc::now(), chrono_tz::Europe::Berlin);
-        assert_eq!(cards.len(), 4);
+        assert_eq!(cards.len(), 12);
         for (_, card) in &cards {
             assert!(!card.contains("<script>"));
         }

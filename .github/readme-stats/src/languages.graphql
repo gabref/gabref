@@ -2,7 +2,10 @@ query($login: String!, $cursor: String) {
   user(login: $login) {
     repositories(first: 100, after: $cursor, isFork: false, ownerAffiliations: OWNER) {
       nodes {
+        id
         isPrivate
+        defaultBranchRef { target { oid } }
+        repositoryTopics(first: 20) { nodes { topic { name } } }
         languages(first: 100) {
           totalCount
           edges { size node { name } }

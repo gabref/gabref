@@ -8,6 +8,7 @@ use std::collections::{BTreeMap, HashSet};
 
 mod cards;
 mod contributions;
+mod frameworks;
 
 const PROFILE: &str = include_str!("profile.graphql");
 const COMMITS: &str = include_str!("commits.graphql");
@@ -22,6 +23,8 @@ pub struct Stats {
     private_repo_count: u64,
     fork_languages: BTreeMap<String, u64>,
     fork_prs: u64,
+    pr_states: [u64; 3],
+    frameworks: BTreeMap<String, u64>,
     contributions: Contributions,
 }
 
@@ -152,9 +155,35 @@ struct RepositoryPage {
 
 #[derive(Deserialize)]
 struct LanguageRepository {
+    id: String,
     #[serde(rename = "isPrivate")]
     is_private: bool,
+    #[serde(rename = "defaultBranchRef")]
+    default_branch: Option<SourceBranch>,
+    #[serde(rename = "repositoryTopics")]
+    topics: Topics,
     languages: LanguagePage,
+}
+
+#[derive(Deserialize)]
+struct SourceBranch {
+    target: SourceRevision,
+}
+#[derive(Deserialize)]
+struct SourceRevision {
+    oid: String,
+}
+#[derive(Deserialize)]
+struct Topics {
+    nodes: Vec<RepositoryTopic>,
+}
+#[derive(Deserialize)]
+struct RepositoryTopic {
+    topic: Topic,
+}
+#[derive(Deserialize)]
+struct Topic {
+    name: String,
 }
 
 #[derive(Deserialize)]
@@ -290,6 +319,7 @@ pub fn collect(api: &mut impl Api, login: &str, now: DateTime<Utc>) -> Result<St
     result.contributions = contributions;
 
     let mut cursor = None;
+    let mut framework_sources = Vec::new();
     loop {
         let response: LanguagesResponse = serde_json::from_value(
             api.query(LANGUAGES, json!({"login": login, "cursor": cursor}))?,
@@ -297,6 +327,16 @@ pub fn collect(api: &mut impl Api, login: &str, now: DateTime<Utc>) -> Result<St
         .context("Invalid GitHub language response")?;
         let repositories = response.user.repositories;
         for repo in repositories.nodes {
+            framework_sources.push(frameworks::Source {
+                id: repo.id,
+                revision: repo.default_branch.map(|branch| branch.target.oid),
+                topics: repo
+                    .topics
+                    .nodes
+                    .into_iter()
+                    .map(|node| node.topic.name)
+                    .collect(),
+            });
             ensure!(
                 repo.languages.total_count <= repo.languages.edges.len(),
                 "A repository exceeded GitHub's 100-language limit."
@@ -317,6 +357,7 @@ pub fn collect(api: &mut impl Api, login: &str, now: DateTime<Utc>) -> Result<St
         result.repo_count - result.private_repo_count,
         result.private_repo_count
     );
+    result.frameworks = frameworks::collect(api, &framework_sources)?;
     contributions::collect(api, login, &user.id, now, &mut result)?;
     Ok(result)
 }
@@ -387,6 +428,37 @@ fn activity(commits: &[&Commit], zone: Tz) -> [u64; 5] {
     ]
 }
 
+fn pulse(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> ([u64; 30], u64, u64) {
+    let start = now.with_timezone(&zone).date_naive() - Duration::days(29);
+    let mut days = [0; 30];
+    for commit in &stats.commits {
+        let index = (commit.date.with_timezone(&zone).date_naive() - start).num_days();
+        if (0..30).contains(&index) {
+            days[index as usize] += 1;
+        }
+    }
+    let mut longest = 0;
+    let mut run = 0;
+    for count in days {
+        run = if count > 0 { run + 1 } else { 0 };
+        longest = longest.max(run);
+    }
+    // Today's partial day does not break an otherwise current streak.
+    let anchor = if days[29] > 0 { 29 } else { 28 };
+    let current = days[..=anchor]
+        .iter()
+        .rev()
+        .take_while(|count| **count > 0)
+        .count() as u64;
+    (days, current, longest)
+}
+
+fn responsive_image(name: &str, description: &str, narrow: &str) -> String {
+    format!(
+        "<p align=\"center\">\n  <picture>\n    <source media=\"(max-width: 1199px)\" srcset=\"assets/stats/{name}-{narrow}.svg\">\n    <img src=\"assets/stats/{name}.svg\" width=\"100%\" alt=\"{description}\">\n  </picture>\n</p>"
+    )
+}
+
 pub fn render(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
     let weekly = stats
         .commits
@@ -450,8 +522,26 @@ pub fn render(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
     let contributions = &stats.contributions;
     let mut sections = vec![
         "## 📊 GitHub activity".to_owned(),
-        "<p align=\"center\">\n  <img src=\"assets/stats/activity.svg\" width=\"820\" alt=\"GitHub activity overview for the past 30 days\">\n</p>\n<p align=\"center\">\n  <img src=\"assets/stats/languages.svg\" width=\"400\" alt=\"Languages across public and private repositories\">\n  <img src=\"assets/stats/rhythm.svg\" width=\"400\" alt=\"Commit activity by weekday and time of day\">\n</p>".to_owned(),
-        "<p align=\"center\">\n  <img src=\"assets/stats/forks.svg\" width=\"820\" alt=\"My authored commits, changed lines and pull requests involving forks\">\n</p>".to_owned(),
+        responsive_image(
+            "activity",
+            "GitHub activity overview for the past 30 days",
+            "compact",
+        ),
+        responsive_image(
+            "languages-rhythm",
+            "Languages across public and private repositories, and commit activity by weekday and time of day",
+            "stacked",
+        ),
+        responsive_image(
+            "forks",
+            "My authored commits, changed lines and pull requests involving forks",
+            "compact",
+        ),
+        responsive_image(
+            "stack-shipping",
+            "Framework and tooling repository counts, pull request outcomes, and commit streaks",
+            "stacked",
+        ),
         "<details>\n<summary>Explore the numbers</summary>".to_owned(),
         summary.join("\n"),
         format!(
@@ -487,6 +577,9 @@ pub fn render(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
     }
     sections.push(format!("**Repository coverage:** {} public + {} private owned, non-fork repositories.\n\n**Private contributions reported by GitHub:** {} (includes contribution types beyond commits; not added to the commit total).",
         number(stats.repo_count - stats.private_repo_count), number(stats.private_repo_count), number(contributions.restricted_contributions_count)));
+    let (_, current, longest) = pulse(stats, now, zone);
+    sections.push(format!("**PR outcomes** · for PRs opened in the past 30 days\n\n| Open | Merged | Closed without merge |\n| ---: | ---: | ---: |\n| {} | {} | {} |\n\n**Commit streaks within the last 30 local dates:** current {} days · longest {} days.", number(stats.pr_states[0]), number(stats.pr_states[1]), number(stats.pr_states[2]), number(current), number(longest)));
+    sections.push("**Framework & tooling signals** · owned non-fork repositories; a repository can match multiple tools\n\n| Tool | Matched repositories |\n| :--- | ---: |".to_owned() + &frameworks::TOOLS.iter().map(|name|format!("\n| {name} | {} |", number(*stats.frameworks.get(*name).unwrap_or(&0)))).collect::<String>());
     let fork_commits = stats
         .commits
         .iter()
@@ -619,7 +712,7 @@ mod tests {
                 ("Rust", 300, None)
             };
             Ok(json!({"user": {"repositories": {
-                "nodes": [{"isPrivate": name == "Rust", "languages": {"totalCount": 1, "edges": [{"size": size, "node": {"name": name}}]}}],
+                "nodes": [{"id":"repo-id", "defaultBranchRef":null, "repositoryTopics":{"nodes":[]}, "isPrivate": name == "Rust", "languages": {"totalCount": 1, "edges": [{"size": size, "node": {"name": name}}]}}],
                 "pageInfo": page_info(next)
             }}}))
         };
@@ -707,6 +800,42 @@ mod tests {
         let winter: DateTime<Utc> = "2026-11-01T04:30:00Z".parse().unwrap();
         assert_eq!(summer.with_timezone(&chrono_tz::Europe::Berlin).hour(), 6);
         assert_eq!(winter.with_timezone(&chrono_tz::Europe::Berlin).hour(), 5);
+    }
+
+    #[test]
+    fn streaks_use_local_dates_and_do_not_break_before_today_has_a_commit() {
+        let commits = [1, 2, 3, 6, 7, 8, 9, 10, 10, 31]
+            .into_iter()
+            .map(|day| Commit {
+                oid: format!("commit-{day}"),
+                date: now() - Duration::days(day),
+                repo: "private-id".into(),
+                additions: 1,
+                deletions: 0,
+                from_fork: false,
+                from_pr: false,
+            })
+            .collect();
+        let mut stats = Stats {
+            commits,
+            ..Stats::default()
+        };
+        let (days, current, longest) = pulse(&stats, now(), chrono_tz::Europe::Berlin);
+        assert_eq!(days.iter().sum::<u64>(), 9);
+        assert_eq!(current, 3);
+        assert_eq!(longest, 5);
+        stats.commits.push(Commit {
+            oid: "today".into(),
+            date: now(),
+            repo: "private-id".into(),
+            additions: 1,
+            deletions: 0,
+            from_fork: false,
+            from_pr: false,
+        });
+        let (_, current, longest) = pulse(&stats, now(), chrono_tz::Europe::Berlin);
+        assert_eq!(current, 4);
+        assert_eq!(longest, 5);
     }
 
     #[test]
