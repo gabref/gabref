@@ -1,27 +1,75 @@
-name: Waka Readme
+name: GitHub Readme Stats
 
 on:
   workflow_dispatch:
   schedule:
-    # Runs at 00:00AM UTC
-    - cron: '0 */12 * * *'
+    # Update daily at 05:23 UTC.
+    - cron: '23 5 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/main.yml'
+      - '.github/readme-stats/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: readme-stats
+  cancel-in-progress: false
 
 jobs:
   update-readme:
     name: Update this repo's README
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
-      - uses: anmol098/waka-readme-stats@master #PLEASE USE MASTER BRANCH
+      - uses: actions/checkout@v7.0.1
         with:
-          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-          GH_TOKEN: ${{ secrets.GH_SECRET }}
-          SHOW_PROJECTS: "False"
-          SHOW_TOTAL_CODE_TIME : "False"
-          SHOW_LANGUAGE : "True"
-          SHOW_SHORT_INFO : "False"
-          SHOW_LINES_OF_CODE: "True"
-          SHOW_COMMIT: "True"
-          SHOW_DAYS_OF_WEEK: "True"
-          SHOW_LOC_CHART: "True"
-          SHOW_PROFILE_VIEWS : "False"
-          LOCALE: "en"
+          ref: main
+
+      - name: Restore compiled stats generator
+        id: binary
+        uses: actions/cache/restore@v6.1.0
+        with:
+          path: .github/readme-stats/dist/readme-stats
+          key: readme-stats-v1-ubuntu24.04-${{ runner.arch }}-${{ hashFiles('.github/readme-stats/Cargo.toml', '.github/readme-stats/Cargo.lock', '.github/readme-stats/rust-toolchain.toml', '.github/readme-stats/src/**', '.github/workflows/main.yml') }}
+
+      - name: Install pinned Rust toolchain
+        if: steps.binary.outputs.cache-hit != 'true'
+        working-directory: .github/readme-stats
+        run: rustup toolchain install --no-self-update --profile minimal --component clippy,rustfmt
+
+      - name: Check and build stats generator
+        if: steps.binary.outputs.cache-hit != 'true'
+        working-directory: .github/readme-stats
+        run: |
+          cargo fmt --check
+          cargo clippy --locked --all-targets -- -D warnings
+          cargo test --locked
+          cargo build --release --locked
+          install -Dm755 target/release/readme-stats dist/readme-stats
+
+      - name: Save compiled stats generator
+        if: steps.binary.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v6.1.0
+        with:
+          path: .github/readme-stats/dist/readme-stats
+          key: ${{ steps.binary.outputs.cache-primary-key }}
+
+      - name: Generate GitHub activity stats
+        env:
+          # Reuse the existing token for access to contributions across repos.
+          GH_TOKEN: ${{ secrets.GH_SECRET || github.token }}
+        run: .github/readme-stats/dist/readme-stats --user "$GITHUB_REPOSITORY_OWNER"
+
+      - name: Commit updated stats
+        run: |
+          if git diff --quiet -- README.md; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m "Update GitHub activity stats"
+          git push origin HEAD:main

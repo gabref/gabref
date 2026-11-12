@@ -1,0 +1,14 @@
+query($login: String!, $cursor: String) {
+  user(login: $login) {
+    repositories(first: 100, after: $cursor, privacy: PUBLIC,
+                 isFork: false, ownerAffiliations: OWNER) {
+      nodes {
+        languages(first: 100) {
+          totalCount
+          edges { size node { name } }
+        }
+      }
+      pageInfo { hasNextPage endCursor }
+    }
+  }
+}

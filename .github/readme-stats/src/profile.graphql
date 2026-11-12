@@ -1,0 +1,14 @@
+query($login: String!, $since: DateTime!, $until: DateTime!) {
+  user(login: $login) {
+    id
+    contributionsCollection(from: $since, to: $until) {
+      totalRepositoriesWithContributedCommits
+      totalPullRequestContributions
+      totalPullRequestReviewContributions
+      totalIssueContributions
+      commitContributionsByRepository(maxRepositories: 100) {
+        repository { id }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+query($repo: ID!, $author: ID!, $since: GitTimestamp!,
+      $until: GitTimestamp!, $cursor: String) {
+  node(id: $repo) {
+    ... on Repository {
+      defaultBranchRef {
+        target {
+          ... on Commit {
+            history(first: 100, after: $cursor, since: $since,
+                    until: $until, author: {id: $author}) {
+              nodes { oid committedDate additions deletions parents { totalCount } }
+              pageInfo { hasNextPage endCursor }
+            }
+          }
+        }
+      }
+    }
+  }
+}
