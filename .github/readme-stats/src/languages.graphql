@@ -1,8 +1,8 @@
 query($login: String!, $cursor: String) {
   user(login: $login) {
-    repositories(first: 100, after: $cursor, privacy: PUBLIC,
-                 isFork: false, ownerAffiliations: OWNER) {
+    repositories(first: 100, after: $cursor, isFork: false, ownerAffiliations: OWNER) {
       nodes {
+        isPrivate
         languages(first: 100) {
           totalCount
           edges { size node { name } }

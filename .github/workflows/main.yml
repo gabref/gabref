@@ -65,11 +65,11 @@ jobs:
 
       - name: Commit updated stats
         run: |
-          if git diff --quiet -- README.md; then
+          git add README.md assets/stats
+          if git diff --cached --quiet; then
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add README.md
           git commit -m "Update GitHub activity stats"
           git push origin HEAD:main

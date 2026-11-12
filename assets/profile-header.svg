@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="230" viewBox="0 0 840 230" role="img" aria-labelledby="title description">
+  <title id="title">Gabriel Franzeri</title>
+  <desc id="description">Software, sistemas e automação. Perfil de Gabriel Franzeri, gabref.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1"><stop stop-color="#131F32"/><stop offset="1" stop-color="#0A101B"/></linearGradient>
+    <linearGradient id="accent"><stop stop-color="#53E1C1"/><stop offset="1" stop-color="#8B9CFF"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#7087A8" stroke-opacity=".09"/></pattern>
+  </defs>
+  <rect x=".5" y=".5" width="839" height="229" rx="20" fill="url(#background)" stroke="#29364C"/>
+  <rect x="500" y="1" width="339" height="228" rx="20" fill="url(#grid)"/>
+  <circle cx="744" cy="90" r="109" fill="#818CF8" opacity=".04"/>
+  <path d="M41 46H81" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>
+  <g font-family="'Segoe UI',Arial,sans-serif">
+    <text x="41" y="76" fill="#53E1C1" font-size="12" font-weight="700" letter-spacing="3">OLÁ, EU SOU O</text>
+    <text x="38" y="126" fill="#EDF3FF" font-size="45" font-weight="700" letter-spacing="-1.5">Gabriel Franzeri<tspan fill="#53E1C1">.</tspan></text>
+    <text x="41" y="160" fill="#9AABC4" font-size="18">Software, sistemas &amp; automação.</text>
+    <text x="41" y="201" fill="#9AABC4" font-size="12" letter-spacing="1">@GABREF <tspan fill="#435673"> / </tspan> RUST · TYPESCRIPT · AUTOMAÇÃO</text>
+  </g>
+  <g transform="translate(642 59)" fill="none" stroke-linejoin="round">
+    <path d="M55 0 110 32 55 64 0 32Z" fill="#1B3444" stroke="#53E1C1" stroke-width="1.5"/>
+    <path d="M0 32 55 64 55 128 0 96Z" fill="#132C35" stroke="#53E1C1" stroke-width="1.5"/>
+    <path d="M55 64 110 32 110 96 55 128Z" fill="#222A48" stroke="#8B9CFF" stroke-width="1.5"/>
+    <path d="M18 21 73 53M37 11 92 43M18 43 73 11M37 53 92 21M18 43V107M37 53V117M0 53 55 85M0 75 55 107M73 53V117M92 43V107M55 85 110 53M55 107 110 75" stroke="#93AFBE" stroke-opacity=".35"/>
+  </g>
+</svg>

@@ -6,6 +6,7 @@ query($login: String!, $since: DateTime!, $until: DateTime!) {
       totalPullRequestContributions
       totalPullRequestReviewContributions
       totalIssueContributions
+      restrictedContributionsCount
       commitContributionsByRepository(maxRepositories: 100) {
         repository { id }
       }

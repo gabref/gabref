@@ -1,11 +1,14 @@
 use anyhow::{Context, Result, anyhow, bail};
-use reqwest::{StatusCode, blocking::Client, redirect::Policy};
+use reqwest::{Method, StatusCode, blocking::Client, redirect::Policy};
 use serde::Deserialize;
 use serde_json::{Value, json};
 use std::{env, process::Command, thread, time::Duration};
 
 pub trait Api {
     fn query(&mut self, query: &str, variables: Value) -> Result<Value>;
+    fn get(&mut self, _path: &str) -> Result<Value> {
+        bail!("REST requests are unavailable for this API client")
+    }
 }
 
 pub struct GitHub {
@@ -97,20 +100,26 @@ impl GitHub {
         })
     }
 
-    fn request(&self, query: &str, variables: &Value) -> std::result::Result<Value, Failure> {
-        let response = self
+    fn request(
+        &self,
+        method: Method,
+        path: &str,
+        payload: Option<&Value>,
+    ) -> std::result::Result<Value, Failure> {
+        let mut request = self
             .client
-            .post("https://api.github.com/graphql")
-            .bearer_auth(&self.token)
-            .json(&json!({"query": query, "variables": variables}))
-            .send()
-            .map_err(|error| {
-                if error.is_timeout() || error.is_connect() || error.is_body() {
-                    Failure::Retryable(error.into())
-                } else {
-                    Failure::Fatal(error.into())
-                }
-            })?;
+            .request(method, format!("https://api.github.com{path}"))
+            .bearer_auth(&self.token);
+        if let Some(payload) = payload {
+            request = request.json(payload);
+        }
+        let response = request.send().map_err(|error| {
+            if error.is_timeout() || error.is_connect() || error.is_body() {
+                Failure::Retryable(error.into())
+            } else {
+                Failure::Fatal(error.into())
+            }
+        })?;
         let status = response.status();
         if !status.is_success() {
             let rate_limited = status == StatusCode::TOO_MANY_REQUESTS
@@ -126,16 +135,32 @@ impl GitHub {
                 Failure::Fatal(error)
             });
         }
-        let envelope = response
-            .json()
-            .map_err(|error| Failure::Fatal(error.into()))?;
-        decode(envelope)
+        response.json().map_err(|error| {
+            if error.is_timeout() || error.is_body() || error.is_decode() {
+                Failure::Retryable(error.into())
+            } else {
+                Failure::Fatal(error.into())
+            }
+        })
     }
 }
 
 impl Api for GitHub {
     fn query(&mut self, query: &str, variables: Value) -> Result<Value> {
-        retry(|| self.request(query, &variables), thread::sleep)
+        let payload = json!({"query": query, "variables": variables});
+        retry(
+            || {
+                let value = self.request(Method::POST, "/graphql", Some(&payload))?;
+                let envelope =
+                    serde_json::from_value(value).map_err(|error| Failure::Fatal(error.into()))?;
+                decode(envelope)
+            },
+            thread::sleep,
+        )
+    }
+
+    fn get(&mut self, path: &str) -> Result<Value> {
+        retry(|| self.request(Method::GET, path, None), thread::sleep)
     }
 }
 

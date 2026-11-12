@@ -1,97 +1,125 @@
-## Olá! Eu sou o Gabriel Franzeri
+<p align="center">
+  <img src="assets/profile-header.svg" width="840" alt="Gabriel Franzeri — Software, sistemas e automação">
+</p>
 
-- 🌱 Estudando as principais tecnologias usadas na automação comercial
-- ⚡ Fun fact: Resolvo o cubo mágico
-- Website: [gabudev.cloud](https://gabudev.cloud)
+<p align="center">
+  <a href="https://gabudev.cloud">Website</a> &nbsp;·&nbsp;
+  <a href="https://www.linkedin.com/in/gabriel-franzeri-840196211/">LinkedIn</a> &nbsp;·&nbsp;
+  <a href="https://t.me/gabref">Telegram</a> &nbsp;·&nbsp;
+  <a href="mailto:gabrielfranzer@gmail.com">Email</a> &nbsp;·&nbsp;
+  <a href="https://instagram.com/gabre___/">Instagram</a>
+</p>
 
-[![gabref 42 stats](https://badge.mediaplus.ma/binary/galves-f)](https://github.com/gabref) <!-- (https://github.com/oakoudad/badge42) -->
+<p align="center">
+  Estudando as tecnologias por trás da automação comercial.<br>
+  Fora do código, resolvo o cubo mágico.
+</p>
 
-[![gabref's GitHub stats](https://github-readme-stats.vercel.app/api?username=gabref&show_icons=true&theme=radical)](https://github.com/gabref) <!-- (https://github.com/anuraghazra/github-readme-stats) -->
-
-<!--
- <div>
-  <a href="https://github.com/gabref">
-  <img height="150em" src="https://github-readme-stats.vercel.app/api?username=gabref&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
-  <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gabref&layout=compact&langs_count=7&theme=dracula"/>
-</div>
--->
-  
-  ##
-  
-<div style="display: inline_block"><br>
-  
-  <img align="center" alt="Gabre-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
-  <img align="center" alt="Gabre-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
-  <img align="center" alt="Gabre-Python" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
-  <img align="center" alt="Gabre-Csharp" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg">
-  <img align="center" alt="Gabre-C" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/c/c-original.svg">
-  <img align="center" alt="Gabre-MySql" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg">
-  <img align="center" alt="Gabre-Arduino" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/arduino/arduino-original-wordmark.svg">
-  <img align="center" alt="Gabre-Azure900" height="30" width="40" src="https://user-images.githubusercontent.com/83483325/165398311-1270b3f0-0838-43ab-90e9-d5e3a5a5b984.png">
-
-</div>
-
-##
-  
-<div> 
-  <a href="https://instagram.com/gabre___/" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
-  <a href="https://t.me/gabref" target="_blank"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"></a>
-  <a href = "mailto:gabrielfranzer@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-  <a href="https://www.linkedin.com/in/gabriel-franzeri-840196211/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-original.svg" width="36" height="36" alt="Rust"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" width="36" height="36" alt="TypeScript"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" width="36" height="36" alt="C"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" width="36" height="36" alt="C#"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="36" height="36" alt="Python"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="36" height="36" alt="HTML"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="36" height="36" alt="CSS"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" width="36" height="36" alt="MySQL"> &nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/arduino/arduino-original.svg" width="36" height="36" alt="Arduino">
+</p>
 
 <!--START_SECTION:github-stats-->
 ## 📊 GitHub activity
 
+<p align="center">
+  <img src="assets/stats/activity.svg" width="820" alt="GitHub activity overview for the past 30 days">
+</p>
+<p align="center">
+  <img src="assets/stats/languages.svg" width="400" alt="Languages across public and private repositories">
+  <img src="assets/stats/rhythm.svg" width="400" alt="Commit activity by weekday and time of day">
+</p>
+
+<p align="center">
+  <img src="assets/stats/forks.svg" width="820" alt="My authored commits, changed lines and pull requests involving forks">
+</p>
+
+<details>
+<summary>Explore the numbers</summary>
+
 | Activity | Past 7 days | Past 30 days |
 | :--- | ---: | ---: |
-| Commits | 4 | 33 |
-| Active days | 2 | 7 |
-| Repositories | 2 | 8 |
-| Lines added | 3,816 | 6,341 |
-| Lines removed | 850 | 1,492 |
+| Commits | 31 | 130 |
+| Active days | 6 | 21 |
+| Repositories | 5 | 13 |
+| Lines added | 33,962 | 109,992 |
+| Lines removed | 7,851 | 42,081 |
 
-**Also in the past 30 days:** Pull requests opened: 13 · Reviews submitted: 0 · Issues opened: 1
+**Also in the past 30 days:** Pull requests opened: 15 · Reviews submitted: 0 · Issues opened: 1
 
 **Commit activity by day** · past 30 days · Europe/Berlin
 
 ```text
-Monday                        0  ░░░░░░░░░░░░░░░░░░░░   0.00%
-Tuesday                       9  █████░░░░░░░░░░░░░░░  27.27%
-Wednesday                     5  ███░░░░░░░░░░░░░░░░░  15.15%
-Thursday                      8  █████░░░░░░░░░░░░░░░  24.24%
-Friday                       11  ███████░░░░░░░░░░░░░  33.33%
-Saturday                      0  ░░░░░░░░░░░░░░░░░░░░   0.00%
+Monday                        7  █░░░░░░░░░░░░░░░░░░░   5.38%
+Tuesday                      17  ███░░░░░░░░░░░░░░░░░  13.08%
+Wednesday                    44  ███████░░░░░░░░░░░░░  33.85%
+Thursday                     22  ███░░░░░░░░░░░░░░░░░  16.92%
+Friday                       30  █████░░░░░░░░░░░░░░░  23.08%
+Saturday                     10  ██░░░░░░░░░░░░░░░░░░   7.69%
 Sunday                        0  ░░░░░░░░░░░░░░░░░░░░   0.00%
 ```
 
 **Commit activity by time of day** · past 30 days
 
 ```text
-Night (00:00–05:59)            0  ░░░░░░░░░░░░░░░░░░░░   0.00%
-Morning (06:00–11:59)         30  ██████████████████░░  90.91%
-Afternoon (12:00–17:59)        3  ██░░░░░░░░░░░░░░░░░░   9.09%
-Evening (18:00–23:59)          0  ░░░░░░░░░░░░░░░░░░░░   0.00%
+Night (00:00–05:59)           22  ███░░░░░░░░░░░░░░░░░  16.92%
+Morning (06:00–11:59)         50  ████████░░░░░░░░░░░░  38.46%
+Afternoon (12:00–17:59)       55  ████████░░░░░░░░░░░░  42.31%
+Evening (18:00–23:59)          3  ░░░░░░░░░░░░░░░░░░░░   2.31%
 ```
 
-**Languages across 51 public repositories** · source size in bytes
+**Languages across 108 repositories** · public + private · source size in bytes
 
 ```text
-C                      1,398,310  ███████░░░░░░░░░░░░░  34.38%
-TypeScript               712,544  ████░░░░░░░░░░░░░░░░  17.52%
-HTML                     415,241  ██░░░░░░░░░░░░░░░░░░  10.21%
-Rust                     313,214  ██░░░░░░░░░░░░░░░░░░   7.70%
-JavaScript               190,249  █░░░░░░░░░░░░░░░░░░░   4.68%
-CSS                      145,344  █░░░░░░░░░░░░░░░░░░░   3.57%
-Lua                      129,747  █░░░░░░░░░░░░░░░░░░░   3.19%
-Java                     127,729  █░░░░░░░░░░░░░░░░░░░   3.14%
-Other                    635,266  ███░░░░░░░░░░░░░░░░░  15.62%
+Rust                   7,735,604  ███████░░░░░░░░░░░░░  35.05%
+TypeScript             4,760,989  ████░░░░░░░░░░░░░░░░  21.57%
+JavaScript             2,715,172  ██░░░░░░░░░░░░░░░░░░  12.30%
+C                      1,681,082  ██░░░░░░░░░░░░░░░░░░   7.62%
+Astro                  1,553,143  █░░░░░░░░░░░░░░░░░░░   7.04%
+HTML                     734,014  █░░░░░░░░░░░░░░░░░░░   3.33%
+CSS                      547,494  ░░░░░░░░░░░░░░░░░░░░   2.48%
+Go                       435,961  ░░░░░░░░░░░░░░░░░░░░   1.98%
+Other                  1,905,953  ██░░░░░░░░░░░░░░░░░░   8.64%
 ```
+
+**Repository coverage:** 51 public + 57 private owned, non-fork repositories.
+
+**Private contributions reported by GitHub:** 97 (includes contribution types beyond commits; not added to the commit total).
+
+**Forks & pull requests · past 30 days**
+
+| Authored fork commits | Lines added | Lines removed | PRs opened involving forks |
+| ---: | ---: | ---: | ---: |
+| 37 | 4,297 | 1,647 | 11 |
+
+**Languages in fork contributions** · changed lines by file type
+
+```text
+Kotlin                    1,902  ██████░░░░░░░░░░░░░░  32.00%
+TOML                      1,811  ██████░░░░░░░░░░░░░░  30.47%
+YAML                      1,010  ███░░░░░░░░░░░░░░░░░  16.99%
+Rust                        860  ███░░░░░░░░░░░░░░░░░  14.47%
+Documentation               340  █░░░░░░░░░░░░░░░░░░░   5.72%
+JavaScript                    6  ░░░░░░░░░░░░░░░░░░░░   0.10%
+Swift                         6  ░░░░░░░░░░░░░░░░░░░░   0.10%
+XML                           5  ░░░░░░░░░░░░░░░░░░░░   0.08%
+JSON                          4  ░░░░░░░░░░░░░░░░░░░░   0.07%
+```
+
+</details>
 
 <details>
 <summary>About these stats</summary>
 
-Activity covers commits attributed to my GitHub account on default branches of repositories in my contribution history, accessible to the automation. Merge commits and duplicate commit hashes are excluded. Private activity is aggregated without repository names. Line counts describe commit diffs, including generated files. Languages cover my public, owned, non-fork repositories.
+Activity covers my authored commits on default branches, owned fork branches, and pull requests I opened, in repositories accessible to the automation. Merge commits and duplicate commit hashes are excluded. Private activity is aggregated without repository names. Line counts describe commit diffs, including generated files. Private repository discovery includes accessible collaborations. Languages cover my public and private, owned, non-fork repositories.
 
 </details>
 

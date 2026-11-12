@@ -1,0 +1,9 @@
+query($login: String!, $cursor: String) {
+  user(login: $login) {
+    repositories(first: 100, after: $cursor, privacy: PRIVATE, isFork: false,
+                 ownerAffiliations: [OWNER, COLLABORATOR, ORGANIZATION_MEMBER]) {
+      nodes { id pushedAt }
+      pageInfo { hasNextPage endCursor }
+    }
+  }
+}

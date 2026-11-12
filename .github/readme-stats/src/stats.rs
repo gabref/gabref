@@ -6,23 +6,33 @@ use serde::Deserialize;
 use serde_json::json;
 use std::collections::{BTreeMap, HashSet};
 
+mod cards;
+mod contributions;
+
 const PROFILE: &str = include_str!("profile.graphql");
 const COMMITS: &str = include_str!("commits.graphql");
 const LANGUAGES: &str = include_str!("languages.graphql");
+const PRIVATE_REPOSITORIES: &str = include_str!("private-repositories.graphql");
 
 #[derive(Default)]
 pub struct Stats {
     commits: Vec<Commit>,
     languages: BTreeMap<String, u64>,
     repo_count: u64,
+    private_repo_count: u64,
+    fork_languages: BTreeMap<String, u64>,
+    fork_prs: u64,
     contributions: Contributions,
 }
 
 struct Commit {
+    oid: String,
     date: DateTime<Utc>,
     repo: String,
     additions: u64,
     deletions: u64,
+    from_fork: bool,
+    from_pr: bool,
 }
 
 #[derive(Deserialize)]
@@ -44,6 +54,8 @@ struct Contributions {
     total_pull_request_contributions: u64,
     total_pull_request_review_contributions: u64,
     total_issue_contributions: u64,
+    #[serde(default)]
+    restricted_contributions_count: u64,
     commit_contributions_by_repository: Vec<RepositoryContribution>,
 }
 
@@ -140,7 +152,33 @@ struct RepositoryPage {
 
 #[derive(Deserialize)]
 struct LanguageRepository {
+    #[serde(rename = "isPrivate")]
+    is_private: bool,
     languages: LanguagePage,
+}
+
+#[derive(Deserialize)]
+struct PrivateResponse {
+    user: PrivateUser,
+}
+
+#[derive(Deserialize)]
+struct PrivateUser {
+    repositories: PrivatePage,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct PrivatePage {
+    nodes: Vec<PrivateRepository>,
+    page_info: PageInfo,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct PrivateRepository {
+    id: String,
+    pushed_at: Option<DateTime<Utc>>,
 }
 
 #[derive(Deserialize)]
@@ -176,10 +214,40 @@ pub fn collect(api: &mut impl Api, login: &str, now: DateTime<Utc>) -> Result<St
         "GitHub's 100-repository contribution limit was exceeded."
     );
 
+    let mut repositories: Vec<String> = contributions
+        .commit_contributions_by_repository
+        .iter()
+        .map(|item| item.repository.id.clone())
+        .collect();
+    // The contribution feed can mask private repositories even for the owner.
+    // Discover accessible private repositories explicitly, without fetching names.
+    let mut cursor = None;
+    loop {
+        let response: PrivateResponse = serde_json::from_value(api.query(
+            PRIVATE_REPOSITORIES,
+            json!({"login": login, "cursor": cursor}),
+        )?)
+        .context("Invalid private repository response")?;
+        let page = response.user.repositories;
+        for repo in page.nodes {
+            if repo.pushed_at.is_some_and(|date| date >= since) && !repositories.contains(&repo.id)
+            {
+                repositories.push(repo.id);
+            }
+        }
+        cursor = page.page_info.next(&cursor)?;
+        if cursor.is_none() {
+            break;
+        }
+    }
+
+    eprintln!(
+        "Reading authored default-branch commits from {} accessible repositories",
+        repositories.len()
+    );
     let mut result = Stats::default();
     let mut seen = HashSet::new();
-    for contribution in &contributions.commit_contributions_by_repository {
-        let repo = &contribution.repository.id;
+    for repo in &repositories {
         let mut cursor = None;
         loop {
             let response: HistoryResponse = serde_json::from_value(api.query(
@@ -200,13 +268,16 @@ pub fn collect(api: &mut impl Api, login: &str, now: DateTime<Utc>) -> Result<St
                 if commit.committed_date >= since
                     && commit.committed_date <= now
                     && commit.parents.total_count <= 1
-                    && seen.insert(commit.oid)
+                    && seen.insert(commit.oid.clone())
                 {
                     result.commits.push(Commit {
+                        oid: commit.oid,
                         date: commit.committed_date,
                         repo: repo.clone(),
                         additions: commit.additions,
                         deletions: commit.deletions,
+                        from_fork: false,
+                        from_pr: false,
                     });
                 }
             }
@@ -231,6 +302,7 @@ pub fn collect(api: &mut impl Api, login: &str, now: DateTime<Utc>) -> Result<St
                 "A repository exceeded GitHub's 100-language limit."
             );
             result.repo_count += 1;
+            result.private_repo_count += u64::from(repo.is_private);
             for language in repo.languages.edges {
                 *result.languages.entry(language.node.name).or_default() += language.size;
             }
@@ -240,6 +312,12 @@ pub fn collect(api: &mut impl Api, login: &str, now: DateTime<Utc>) -> Result<St
             break;
         }
     }
+    eprintln!(
+        "Language coverage: {} public + {} private owned repositories",
+        result.repo_count - result.private_repo_count,
+        result.private_repo_count
+    );
+    contributions::collect(api, login, &user.id, now, &mut result)?;
     Ok(result)
 }
 
@@ -372,6 +450,9 @@ pub fn render(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
     let contributions = &stats.contributions;
     let mut sections = vec![
         "## 📊 GitHub activity".to_owned(),
+        "<p align=\"center\">\n  <img src=\"assets/stats/activity.svg\" width=\"820\" alt=\"GitHub activity overview for the past 30 days\">\n</p>\n<p align=\"center\">\n  <img src=\"assets/stats/languages.svg\" width=\"400\" alt=\"Languages across public and private repositories\">\n  <img src=\"assets/stats/rhythm.svg\" width=\"400\" alt=\"Commit activity by weekday and time of day\">\n</p>".to_owned(),
+        "<p align=\"center\">\n  <img src=\"assets/stats/forks.svg\" width=\"820\" alt=\"My authored commits, changed lines and pull requests involving forks\">\n</p>".to_owned(),
+        "<details>\n<summary>Explore the numbers</summary>".to_owned(),
         summary.join("\n"),
         format!(
             "**Also in the past 30 days:** Pull requests opened: {} · Reviews submitted: {} · Issues opened: {}",
@@ -384,7 +465,7 @@ pub fn render(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
         "**Commit activity by time of day** · past 30 days".to_owned(),
         distribution(&hour_counts),
         format!(
-            "**Languages across {} public repositories** · source size in bytes",
+            "**Languages across {} repositories** · public + private · source size in bytes",
             number(stats.repo_count)
         ),
     ];
@@ -404,15 +485,36 @@ pub fn render(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
         }
         sections.push(distribution(&languages));
     }
+    sections.push(format!("**Repository coverage:** {} public + {} private owned, non-fork repositories.\n\n**Private contributions reported by GitHub:** {} (includes contribution types beyond commits; not added to the commit total).",
+        number(stats.repo_count - stats.private_repo_count), number(stats.private_repo_count), number(contributions.restricted_contributions_count)));
+    let fork_commits = stats
+        .commits
+        .iter()
+        .filter(|commit| commit.from_fork)
+        .collect::<Vec<_>>();
+    sections.push(format!("**Forks & pull requests · past 30 days**\n\n| Authored fork commits | Lines added | Lines removed | PRs opened involving forks |\n| ---: | ---: | ---: | ---: |\n| {} | {} | {} | {} |",
+        number(fork_commits.len() as u64), number(fork_commits.iter().map(|c| c.additions).sum()), number(fork_commits.iter().map(|c| c.deletions).sum()), number(stats.fork_prs)));
+    if !stats.fork_languages.is_empty() {
+        sections.push("**Languages in fork contributions** · changed lines by file type".into());
+        let mut fork_languages = stats
+            .fork_languages
+            .iter()
+            .map(|(name, count)| (name.clone(), *count))
+            .collect::<Vec<_>>();
+        fork_languages.sort_by(|a, b| b.1.cmp(&a.1).then(a.0.cmp(&b.0)));
+        sections.push(distribution(&fork_languages));
+    }
+    sections.push("</details>".into());
     sections.push(
         concat!(
             "<details>\n<summary>About these stats</summary>\n\n",
-            "Activity covers commits attributed to my GitHub account on default branches ",
-            "of repositories in my contribution history, accessible to the automation. ",
+            "Activity covers my authored commits on default branches, owned fork branches, ",
+            "and pull requests I opened, in repositories accessible to the automation. ",
             "Merge commits and duplicate commit hashes are excluded. ",
             "Private activity is aggregated without repository names. ",
             "Line counts describe commit diffs, including generated files. ",
-            "Languages cover my public, owned, non-fork repositories.\n\n</details>"
+            "Private repository discovery includes accessible collaborations. ",
+            "Languages cover my public and private, owned, non-fork repositories.\n\n</details>"
         )
         .into(),
     );
@@ -421,6 +523,10 @@ pub fn render(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> String {
         now.format("%Y-%m-%d")
     ));
     sections.join("\n\n") + "\n"
+}
+
+pub fn assets(stats: &Stats, now: DateTime<Utc>, zone: Tz) -> Vec<(&'static str, String)> {
+    cards::render(stats, now, zone)
 }
 
 #[cfg(test)]
@@ -461,7 +567,9 @@ mod tests {
             if query == COMMITS {
                 assert_eq!(variables["since"], json!(now() - Duration::days(30)));
                 assert_eq!(variables["until"], json!(now()));
-                let (nodes, next) = if variables["repo"] == "b" {
+                let (nodes, next) = if variables["repo"] == "private-only" {
+                    (vec![raw_commit("private-commit", 2, 1)], None)
+                } else if variables["repo"] == "b" {
                     (
                         vec![raw_commit("shared", 1, 1), raw_commit("second-repo", 1, 1)],
                         None,
@@ -487,6 +595,22 @@ mod tests {
                     "nodes": nodes, "pageInfo": page_info(next)
                 }}}}}));
             }
+            if query == PRIVATE_REPOSITORIES {
+                return Ok(json!({"user":{"repositories":{"nodes":[
+                    {"id":"private-only","pushedAt":now()},
+                    {"id":"inactive-private","pushedAt":now()-Duration::days(31)}
+                ],"pageInfo":page_info(None)}}}));
+            }
+            if query == contributions::FORKS {
+                return Ok(
+                    json!({"user":{"repositories":{"nodes":[],"pageInfo":page_info(None)}}}),
+                );
+            }
+            if query == contributions::PULL_REQUESTS {
+                return Ok(
+                    json!({"user":{"pullRequests":{"nodes":[],"pageInfo":page_info(None)}}}),
+                );
+            }
             assert_eq!(query, LANGUAGES);
             let (name, size, next) = if variables["cursor"].is_null() {
                 ("Python", 100, Some("next-repo"))
@@ -495,14 +619,15 @@ mod tests {
                 ("Rust", 300, None)
             };
             Ok(json!({"user": {"repositories": {
-                "nodes": [{"languages": {"totalCount": 1, "edges": [{"size": size, "node": {"name": name}}]}}],
+                "nodes": [{"isPrivate": name == "Rust", "languages": {"totalCount": 1, "edges": [{"size": size, "node": {"name": name}}]}}],
                 "pageInfo": page_info(next)
             }}}))
         };
         let stats = collect(&mut api, "gabref", now()).unwrap();
-        assert_eq!(stats.commits.len(), 4);
-        assert_eq!(stats.commits.iter().map(|c| c.additions).sum::<u64>(), 40);
+        assert_eq!(stats.commits.len(), 5);
+        assert_eq!(stats.commits.iter().map(|c| c.additions).sum::<u64>(), 50);
         assert_eq!(stats.repo_count, 2);
+        assert_eq!(stats.private_repo_count, 1);
         assert_eq!(stats.languages["Python"], 100);
         assert_eq!(stats.languages["Rust"], 300);
     }
@@ -535,16 +660,22 @@ mod tests {
         let stats = Stats {
             commits: vec![
                 Commit {
+                    oid: "a".into(),
                     date: "2026-11-08T23:30:00Z".parse().unwrap(),
                     repo: "private-repo-id".into(),
                     additions: 10,
                     deletions: 3,
+                    from_fork: true,
+                    from_pr: true,
                 },
                 Commit {
+                    oid: "b".into(),
                     date: now() - Duration::days(15),
                     repo: "another-private-id".into(),
                     additions: 10,
                     deletions: 3,
+                    from_fork: false,
+                    from_pr: false,
                 },
             ],
             languages: BTreeMap::from([("Rust".into(), 100)]),

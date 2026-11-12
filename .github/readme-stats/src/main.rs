@@ -53,6 +53,16 @@ fn update_readme(args: &Args, now: DateTime<Utc>, api: &mut impl Api) -> Result<
         Ok(Some(generated))
     } else {
         // Fetching, validation and rendering must all succeed before writing.
+        let assets = stats::assets(&data, now, args.timezone);
+        let directory = args
+            .readme
+            .parent()
+            .context("README has no parent directory")?
+            .join("assets/stats");
+        fs::create_dir_all(&directory).context("Unable to create stats asset directory")?;
+        for (name, contents) in assets {
+            fs::write(directory.join(name), contents).context("Unable to write stats card")?;
+        }
         fs::write(&args.readme, updated).context("Unable to write README")?;
         Ok(None)
     }

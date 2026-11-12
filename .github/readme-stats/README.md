@@ -1,6 +1,7 @@
 # Profile stats automation
 
-This Rust program replaces the marked GitHub stats section of the profile README.
+This Rust program updates the marked GitHub stats section and generates the SVG
+dashboard cards in `assets/stats/`. The profile header is a separate static SVG.
 The workflow runs daily at 05:23 UTC, on changes to the automation on `main`,
 and through **Run workflow** in GitHub Actions.
 
@@ -41,14 +42,36 @@ and can be deleted from the repository secrets.
   lines added/removed.
 - Pull requests opened, reviews submitted, and issues opened in the past 30 days.
 - Commit weekday and time-of-day distributions in `Europe/Berlin`, including DST.
-- Languages by source bytes across all public, owned, non-fork repositories.
+- Languages by source bytes across public and private owned, non-fork repositories.
+- Authored commits on all branches of recently pushed owned forks and in PRs
+  opened by the account, including commits not yet merged upstream.
+- Fork-specific commit/line totals, PR counts, and changed-line languages based
+  on file types. The fork's entire codebase is not treated as authored work.
 
 The contribution API identifies repositories with commit contributions during the
-past 30 days. Authored commits are then paginated from each repository's default
-branch, using their commit timestamps. Merge commits are excluded, and identical
-commit hashes are counted once across repositories. Feature-branch work that has
-not reached the default branch is outside this measure. Line counts include
-generated files; they are diff totals, not a count of code currently maintained.
+past 30 days. Private repositories are also discovered explicitly because the
+contribution feed can mask private details. Recently pushed private repositories
+owned by the account or accessible through collaborations/organizations are scanned
+on their default branches. Owned forks are scanned across all branches. PRs are
+paginated by update date, with only commits authored by the account in the past
+30 days included. Older PRs can still contribute recent commits.
+
+Merge commits are excluded. Identical commit hashes are counted once across
+default branches, fork branches and PRs, including after a PR is merged. The fork
+subtotal overlaps the overall total. Fork PR counts cover PRs opened during the
+reporting period with a fork as source or destination. Deleted source forks can
+leave PRs without fork metadata; their authored commits still enter the overall
+total. Work on unrelated feature branches outside these sources is not scanned.
+
+Fork contribution languages use additions plus deletions per changed file from
+GitHub's commit API, classified by file extension/name. They describe changed lines,
+not source bytes or coding time. The main language card uses GitHub's source byte
+counts for owned, non-fork repositories. Repository/branch names, PR titles, commit
+messages, and changed-file paths never enter the README or SVGs.
+
+Line counts include generated files; they are diff totals, not a count of code
+currently maintained. GitHub's restricted/private contribution count is displayed
+separately because it includes contribution types beyond commits.
 GitHub activity cannot determine coding time, editor/OS usage, or AI usage.
 
 The API limits contribution discovery to 100 repositories. If that limit or the
@@ -56,7 +79,7 @@ The API limits contribution discovery to 100 repositories. If that limit or the
 instead of publishing an incomplete result. Commit histories and owned repository
 lists are paginated. Temporary network/API failures are retried up to four times
 with 2, 4, and 8 second backoffs and a 90 second timeout per request. Persistent
-failures leave the README unchanged and fail the workflow normally.
+failures leave the README and cards unchanged and fail the workflow normally.
 
 ## Run locally
 
