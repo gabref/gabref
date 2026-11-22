@@ -7,21 +7,21 @@
 <text x="24" y="33" class="accent eyebrow">CODE / LANGUAGES</text>
 <text x="24" y="69" class="heading">What I build with</text>
 <text x="24" y="93" class="muted" font-size="13">108 owned repositories · public + private</text>
-<defs><clipPath id="left-bar"><rect x="24" y="115" width="352" height="12" rx="6"/></clipPath></defs><rect x="24.00" y="115" width="123.38" height="12" fill="#DEA584" clip-path="url(#left-bar)"/>
+<defs><clipPath id="left-bar"><rect x="24" y="115" width="352" height="12" rx="6"/></clipPath></defs><rect x="24.00" y="115" width="125.16" height="12" fill="#DEA584" clip-path="url(#left-bar)"/>
 <circle cx="29" cy="164" r="4" fill="#DEA584"/><text x="42" y="169" font-size="16">Rust</text>
-<text x="376" y="169" text-anchor="end" class="muted" font-size="15">35.1%</text><rect x="147.38" y="115" width="75.94" height="12" fill="#60A5FA" clip-path="url(#left-bar)"/>
+<text x="376" y="169" text-anchor="end" class="muted" font-size="15">35.6%</text><rect x="149.16" y="115" width="75.88" height="12" fill="#60A5FA" clip-path="url(#left-bar)"/>
 <circle cx="29" cy="196" r="4" fill="#60A5FA"/><text x="42" y="201" font-size="16">TypeScript</text>
-<text x="376" y="201" text-anchor="end" class="muted" font-size="15">21.6%</text><rect x="223.32" y="115" width="43.31" height="12" fill="#F2D96B" clip-path="url(#left-bar)"/>
+<text x="376" y="201" text-anchor="end" class="muted" font-size="15">21.6%</text><rect x="225.03" y="115" width="42.77" height="12" fill="#F2D96B" clip-path="url(#left-bar)"/>
 <circle cx="29" cy="228" r="4" fill="#F2D96B"/><text x="42" y="233" font-size="16">JavaScript</text>
-<text x="376" y="233" text-anchor="end" class="muted" font-size="15">12.3%</text><rect x="266.62" y="115" width="26.81" height="12" fill="#A3A6D3" clip-path="url(#left-bar)"/>
+<text x="376" y="233" text-anchor="end" class="muted" font-size="15">12.2%</text><rect x="267.81" y="115" width="26.48" height="12" fill="#A3A6D3" clip-path="url(#left-bar)"/>
 <circle cx="29" cy="260" r="4" fill="#A3A6D3"/><text x="42" y="265" font-size="16">C</text>
-<text x="376" y="265" text-anchor="end" class="muted" font-size="15">7.6%</text><rect x="293.44" y="115" width="24.77" height="12" fill="#FF826B" clip-path="url(#left-bar)"/>
+<text x="376" y="265" text-anchor="end" class="muted" font-size="15">7.5%</text><rect x="294.29" y="115" width="24.47" height="12" fill="#FF826B" clip-path="url(#left-bar)"/>
 <circle cx="29" cy="292" r="4" fill="#FF826B"/><text x="42" y="297" font-size="16">Astro</text>
-<text x="376" y="297" text-anchor="end" class="muted" font-size="15">7.0%</text><rect x="318.21" y="115" width="11.71" height="12" fill="#F08267" clip-path="url(#left-bar)"/>
+<text x="376" y="297" text-anchor="end" class="muted" font-size="15">7.0%</text><rect x="318.76" y="115" width="11.57" height="12" fill="#F08267" clip-path="url(#left-bar)"/>
 <circle cx="29" cy="324" r="4" fill="#F08267"/><text x="42" y="329" font-size="16">HTML</text>
-<text x="376" y="329" text-anchor="end" class="muted" font-size="15">3.3%</text><rect x="329.91" y="115" width="46.09" height="12" fill="#8496B4" clip-path="url(#left-bar)"/>
+<text x="376" y="329" text-anchor="end" class="muted" font-size="15">3.3%</text><rect x="330.33" y="115" width="45.67" height="12" fill="#8496B4" clip-path="url(#left-bar)"/>
 <circle cx="29" cy="356" r="4" fill="#8496B4"/><text x="42" y="361" font-size="16">Other</text>
-<text x="376" y="361" text-anchor="end" class="muted" font-size="15">13.1%</text><path d="M24 382H376" stroke="#29364C"/><text x="24" y="405" class="muted" font-size="11">By source size · forks counted separately below</text>
+<text x="376" y="361" text-anchor="end" class="muted" font-size="15">13.0%</text><path d="M24 382H376" stroke="#29364C"/><text x="24" y="405" class="muted" font-size="11">By source size · forks counted separately below</text>
 </svg>
 </g><g transform="translate(0 444) scale(1)"><svg xmlns="http://www.w3.org/2000/svg" width="400" height="424" viewBox="0 0 400 424" role="img" aria-labelledby="right-title">
 <title id="right-title">Commit activity by weekday and local time of day</title>
@@ -32,20 +32,20 @@
 <text x="24" y="33" class="accent eyebrow">FLOW / COMMIT RHYTHM</text>
 <text x="24" y="69" class="heading">When I ship</text>
 <text x="24" y="93" class="muted" font-size="13">Past 30 days · Europe/Berlin</text>
-<path d="M24 222H376M24 175H376M24 128H376" stroke="#29364C" stroke-dasharray="3 5"/><rect x="31" y="210.8" width="28" height="11.2" rx="5" fill="#818CF8"/>
-<text x="45" y="200.8" text-anchor="middle" class="muted" font-size="12">8</text>
-<text x="45" y="247" text-anchor="middle" class="muted" font-size="12">Mon</text><rect x="81" y="155.9" width="28" height="66.1" rx="5" fill="#818CF8"/>
-<text x="95" y="145.9" text-anchor="middle" class="muted" font-size="12">47</text>
-<text x="95" y="247" text-anchor="middle" class="muted" font-size="12">Tue</text><rect x="131" y="188.2" width="28" height="33.8" rx="5" fill="#818CF8"/>
-<text x="145" y="178.2" text-anchor="middle" class="muted" font-size="12">24</text>
-<text x="145" y="247" text-anchor="middle" class="muted" font-size="12">Wed</text><rect x="181" y="206.5" width="28" height="15.5" rx="5" fill="#818CF8"/>
-<text x="195" y="196.5" text-anchor="middle" class="muted" font-size="12">11</text>
+<path d="M24 222H376M24 175H376M24 128H376" stroke="#29364C" stroke-dasharray="3 5"/><rect x="31" y="212.5" width="28" height="9.5" rx="5" fill="#818CF8"/>
+<text x="45" y="202.5" text-anchor="middle" class="muted" font-size="12">8</text>
+<text x="45" y="247" text-anchor="middle" class="muted" font-size="12">Mon</text><rect x="81" y="166.3" width="28" height="55.7" rx="5" fill="#818CF8"/>
+<text x="95" y="156.3" text-anchor="middle" class="muted" font-size="12">47</text>
+<text x="95" y="247" text-anchor="middle" class="muted" font-size="12">Tue</text><rect x="131" y="193.6" width="28" height="28.4" rx="5" fill="#818CF8"/>
+<text x="145" y="183.6" text-anchor="middle" class="muted" font-size="12">24</text>
+<text x="145" y="247" text-anchor="middle" class="muted" font-size="12">Wed</text><rect x="181" y="209.0" width="28" height="13.0" rx="5" fill="#818CF8"/>
+<text x="195" y="199.0" text-anchor="middle" class="muted" font-size="12">11</text>
 <text x="195" y="247" text-anchor="middle" class="muted" font-size="12">Thu</text><rect x="231" y="132.0" width="28" height="90.0" rx="5" fill="#53E1C1"/>
-<text x="245" y="122.0" text-anchor="middle" class="muted" font-size="12">64</text>
-<text x="245" y="247" text-anchor="middle" class="muted" font-size="12">Fri</text><rect x="281" y="165.8" width="28" height="56.2" rx="5" fill="#818CF8"/>
-<text x="295" y="155.8" text-anchor="middle" class="muted" font-size="12">40</text>
+<text x="245" y="122.0" text-anchor="middle" class="muted" font-size="12">76</text>
+<text x="245" y="247" text-anchor="middle" class="muted" font-size="12">Fri</text><rect x="281" y="174.6" width="28" height="47.4" rx="5" fill="#818CF8"/>
+<text x="295" y="164.6" text-anchor="middle" class="muted" font-size="12">40</text>
 <text x="295" y="247" text-anchor="middle" class="muted" font-size="12">Sat</text><rect x="331" y="222.0" width="28" height="0.0" rx="5" fill="#818CF8"/>
 <text x="345" y="212.0" text-anchor="middle" class="muted" font-size="12">0</text>
-<text x="345" y="247" text-anchor="middle" class="muted" font-size="12">Sun</text><path d="M24 273H376" stroke="#29364C"/><text x="24" y="298" class="accent eyebrow">TIME OF DAY</text><text x="24" y="329" class="muted" font-size="14">Night</text><text x="184" y="329" text-anchor="end" font-size="14">47</text><text x="214" y="329" class="muted" font-size="14">Morning</text><text x="374" y="329" text-anchor="end" font-size="14">54</text><text x="24" y="361" class="muted" font-size="14">Afternoon</text><text x="184" y="361" text-anchor="end" font-size="14">79</text><text x="214" y="361" class="muted" font-size="14">Evening</text><text x="374" y="361" text-anchor="end" font-size="14">14</text><path d="M24 382H376" stroke="#29364C"/><text x="24" y="405" class="muted" font-size="11">Local commit times · daylight saving time included</text>
+<text x="345" y="247" text-anchor="middle" class="muted" font-size="12">Sun</text><path d="M24 273H376" stroke="#29364C"/><text x="24" y="298" class="accent eyebrow">TIME OF DAY</text><text x="24" y="329" class="muted" font-size="14">Night</text><text x="184" y="329" text-anchor="end" font-size="14">43</text><text x="214" y="329" class="muted" font-size="14">Morning</text><text x="374" y="329" text-anchor="end" font-size="14">54</text><text x="24" y="361" class="muted" font-size="14">Afternoon</text><text x="184" y="361" text-anchor="end" font-size="14">95</text><text x="214" y="361" class="muted" font-size="14">Evening</text><text x="374" y="361" text-anchor="end" font-size="14">14</text><path d="M24 382H376" stroke="#29364C"/><text x="24" y="405" class="muted" font-size="11">Local commit times · daylight saving time included</text>
 </svg>
 </g></svg>
