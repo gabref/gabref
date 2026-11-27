@@ -69,47 +69,47 @@
 
 | Activity | Past 7 days | Past 30 days |
 | :--- | ---: | ---: |
-| Commits | 85 | 218 |
-| Active days | 4 | 20 |
-| Repositories | 4 | 14 |
-| Lines added | 38,029 | 105,817 |
-| Lines removed | 33,608 | 69,535 |
+| Commits | 88 | 230 |
+| Active days | 5 | 21 |
+| Repositories | 4 | 15 |
+| Lines added | 42,620 | 115,180 |
+| Lines removed | 36,875 | 50,622 |
 
-**Also in the past 30 days:** Pull requests opened: 8 · Reviews submitted: 0 · Issues opened: 1
+**Also in the past 30 days:** Pull requests opened: 8 · Reviews submitted: 0 · Issues opened: 0
 
 **Commit activity by day** · past 30 days · Europe/Berlin
 
 ```text
-Monday                        6  █░░░░░░░░░░░░░░░░░░░   2.75%
-Tuesday                      50  █████░░░░░░░░░░░░░░░  22.94%
-Wednesday                    32  ███░░░░░░░░░░░░░░░░░  14.68%
-Thursday                     12  █░░░░░░░░░░░░░░░░░░░   5.50%
-Friday                       83  ████████░░░░░░░░░░░░  38.07%
-Saturday                     35  ███░░░░░░░░░░░░░░░░░  16.06%
+Monday                        6  █░░░░░░░░░░░░░░░░░░░   2.61%
+Tuesday                      50  ████░░░░░░░░░░░░░░░░  21.74%
+Wednesday                    24  ██░░░░░░░░░░░░░░░░░░  10.43%
+Thursday                     12  █░░░░░░░░░░░░░░░░░░░   5.22%
+Friday                      103  █████████░░░░░░░░░░░  44.78%
+Saturday                     35  ███░░░░░░░░░░░░░░░░░  15.22%
 Sunday                        0  ░░░░░░░░░░░░░░░░░░░░   0.00%
 ```
 
 **Commit activity by time of day** · past 30 days
 
 ```text
-Night (00:00–05:59)           43  ████░░░░░░░░░░░░░░░░  19.72%
-Morning (06:00–11:59)         50  █████░░░░░░░░░░░░░░░  22.94%
-Afternoon (12:00–17:59)      111  ██████████░░░░░░░░░░  50.92%
-Evening (18:00–23:59)         14  █░░░░░░░░░░░░░░░░░░░   6.42%
+Night (00:00–05:59)           43  ████░░░░░░░░░░░░░░░░  18.70%
+Morning (06:00–11:59)         48  ████░░░░░░░░░░░░░░░░  20.87%
+Afternoon (12:00–17:59)      125  ███████████░░░░░░░░░  54.35%
+Evening (18:00–23:59)         14  █░░░░░░░░░░░░░░░░░░░   6.09%
 ```
 
 **Languages across 108 repositories** · public + private · source size in bytes
 
 ```text
-Rust                   7,944,790  ███████░░░░░░░░░░░░░  35.10%
-TypeScript             4,816,727  ████░░░░░░░░░░░░░░░░  21.28%
-JavaScript             2,940,662  ███░░░░░░░░░░░░░░░░░  12.99%
-C                      1,681,082  █░░░░░░░░░░░░░░░░░░░   7.43%
-Astro                  1,553,143  █░░░░░░░░░░░░░░░░░░░   6.86%
-HTML                     734,493  █░░░░░░░░░░░░░░░░░░░   3.24%
-CSS                      550,418  ░░░░░░░░░░░░░░░░░░░░   2.43%
-Go                       435,961  ░░░░░░░░░░░░░░░░░░░░   1.93%
-Other                  1,977,716  ██░░░░░░░░░░░░░░░░░░   8.74%
+Rust                   7,954,751  ███████░░░░░░░░░░░░░  34.80%
+TypeScript             4,951,884  ████░░░░░░░░░░░░░░░░  21.66%
+JavaScript             2,946,794  ███░░░░░░░░░░░░░░░░░  12.89%
+C                      1,681,082  █░░░░░░░░░░░░░░░░░░░   7.35%
+Astro                  1,553,143  █░░░░░░░░░░░░░░░░░░░   6.79%
+HTML                     737,080  █░░░░░░░░░░░░░░░░░░░   3.22%
+CSS                      615,143  █░░░░░░░░░░░░░░░░░░░   2.69%
+Go                       435,961  ░░░░░░░░░░░░░░░░░░░░   1.91%
+Other                  1,984,279  ██░░░░░░░░░░░░░░░░░░   8.68%
 ```
 
 **Repository coverage:** 51 public + 57 private owned, non-fork repositories.
@@ -122,7 +122,7 @@ Other                  1,977,716  ██░░░░░░░░░░░░░�
 | ---: | ---: | ---: |
 | 0 | 8 | 0 |
 
-**Commit streaks within the last 30 local dates:** current 2 days · longest 6 days.
+**Commit streaks within the last 30 local dates:** current 1 days · longest 6 days.
 
 **Framework & tooling signals** · owned non-fork repositories; a repository can match multiple tools
 
@@ -141,18 +141,18 @@ Other                  1,977,716  ██░░░░░░░░░░░░░�
 
 | Authored fork commits | Lines added | Lines removed | PRs opened involving forks |
 | ---: | ---: | ---: | ---: |
-| 65 | 7,024 | 3,315 | 7 |
+| 63 | 7,001 | 3,298 | 7 |
 
 **Languages in fork contributions** · changed lines by file type
 
 ```text
-Rust                      2,551  █████░░░░░░░░░░░░░░░  24.67%
-YAML                      2,397  █████░░░░░░░░░░░░░░░  23.18%
-TOML                      2,346  █████░░░░░░░░░░░░░░░  22.69%
-Swift                     1,425  ███░░░░░░░░░░░░░░░░░  13.78%
-Kotlin                      749  █░░░░░░░░░░░░░░░░░░░   7.24%
-Documentation               644  █░░░░░░░░░░░░░░░░░░░   6.23%
-Python                      177  ░░░░░░░░░░░░░░░░░░░░   1.71%
+Rust                      2,551  █████░░░░░░░░░░░░░░░  24.77%
+YAML                      2,397  █████░░░░░░░░░░░░░░░  23.27%
+TOML                      2,306  ████░░░░░░░░░░░░░░░░  22.39%
+Swift                     1,425  ███░░░░░░░░░░░░░░░░░  13.84%
+Kotlin                      749  █░░░░░░░░░░░░░░░░░░░   7.27%
+Documentation               644  █░░░░░░░░░░░░░░░░░░░   6.25%
+Python                      177  ░░░░░░░░░░░░░░░░░░░░   1.72%
 JSON                         29  ░░░░░░░░░░░░░░░░░░░░   0.28%
 XML                          18  ░░░░░░░░░░░░░░░░░░░░   0.17%
 JavaScript                    3  ░░░░░░░░░░░░░░░░░░░░   0.03%
@@ -167,5 +167,5 @@ Activity covers my authored commits on default branches, owned fork branches, an
 
 </details>
 
-Updated on 2026-11-26 UTC · Generated by [my own automation](.github/readme-stats)
+Updated on 2026-11-27 UTC · Generated by [my own automation](.github/readme-stats)
 <!--END_SECTION:github-stats-->
